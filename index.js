@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mvzhf.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 console.log(process.env.DB_USER)
- 
+
 const port = 5000
 
 const app = express()
@@ -26,7 +26,7 @@ client.connect(err => {
   const addEventsCollection = client.db("charity").collection("addedEvents");
  
 //   adding homepage data to mongodb server
-    app.post('/collection', (req, res) => {
+    app.post('/addData', (req, res) => {
         const data = req.body;
         dataCollection.insertMany(data)
         .then(result => {
@@ -100,5 +100,12 @@ app.delete('/delete/:id', (req, res) => {
         res.send('Volunteer Network Server')
     })
 });
+app.get('/collection', (req, res) => {
+    productsCollection.find({})
+    .toArray( (err, documents) => {
+        res.send(documents);
+    })
+})
+
 
 app.listen(process.env.PORT || port);
