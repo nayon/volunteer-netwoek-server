@@ -26,7 +26,7 @@ client.connect(err => {
   const addEventsCollection = client.db("charity").collection("addedEvents");
  
 //   adding homepage data to mongodb server
-    app.post('/addData', (req, res) => {
+    app.post('/collection', (req, res) => {
         const data = req.body;
         dataCollection.insertMany(data)
         .then(result => {
