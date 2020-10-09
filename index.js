@@ -100,12 +100,5 @@ app.delete('/delete/:id', (req, res) => {
         res.send('Volunteer Network Server')
     })
 });
-app.get('/collection', (req, res) => {
-    productsCollection.find({})
-    .toArray( (err, documents) => {
-        res.send(documents);
-    })
-})
-
 
 app.listen(process.env.PORT || port);
